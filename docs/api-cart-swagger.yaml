@@ -1,0 +1,193 @@
+---
+openapi: 3.0.0
+info:
+  title: Cart API
+  description: This is a Cart API
+  contact:
+    email: carles.blanch87@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/CARLESBLANCH87/CartApi/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /api/cart:
+    post:
+      summary: Create cart
+      description: Create new cart
+      operationId: createCart
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: error
+  /api/cart/{idCart}/add:
+    put:
+      summary: Add product to cart
+      description: Add product to cart
+      operationId: addProduct
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: idProduct
+        in: query
+        description: pass id Product
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: quantity
+        in: query
+        description: Quantity product to add
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "201":
+          description: product item added to cart
+        "400":
+          description: "invalid input, object invalid, cart not exist, product not added"
+  /api/cart/{idCart}/remove:
+    put:
+      summary: Remove product to cart
+      description: Remove product to cart
+      operationId: removeProduct
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: idProduct
+        in: query
+        description: pass id Product
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: quantity
+        in: query
+        description: "Quantity product to remove, if not exist product removed to cart"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "201":
+          description: product item remove to cart
+        "400":
+          description: "invalid input, object invalid, cart not exist, product not added"
+  /api/cart/{idCart}/clear:
+    put:
+      summary: Clear cart
+      description: Clear cart
+      operationId: clearCart
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: clear items to cart
+        "400":
+          description: "invalid input, object invalid, cart not exist"
+  /api/cart/{idCart}/confirm:
+    put:
+      summary: Confirm purchase cart
+      description: Confirm purchase cart
+      operationId: confirmPurchaseCart
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "201":
+          description: confirm purchase cart and create order
+        "400":
+          description: "invalid input, object invalid, cart not exist"
+  /api/cart/{idCart}/total-products:
+    get:
+      summary: Get total number of products in cart
+      description: Get total number of products in cart
+      operationId: totalProductsCart
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: total number of products in cart
+        "400":
+          description: "invalid input, object invalid, cart not exist"
+  /api/cart/{idCart}:
+    get:
+      summary: get cart
+      description: get info cart by id
+      operationId: getCart
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: cart result matching id
+        "400":
+          description: bad input parameter
+    delete:
+      summary: delete cart
+      description: Delete a cart to the system
+      operationId: deleteCart
+      parameters:
+      - name: idCart
+        in: path
+        description: pass id Cart
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: item deleted
+        "400":
+          description: "invalid input, object invalid, cart not exist"
+components: {}
