@@ -50,8 +50,6 @@ class AddToCartController
         $quantity = (int) $requestData['quantity'];
         $cartId = $routeParamsData['idCart'];
 
-        //todo comprovar disponibilitat stock Product
-
         $addToCartUsecase = new AddToCartUseCase($this->cartRepository, $this->productRepository);
         $addToCartUsecase->__invoke($cartId, $productId, $quantity);
     }
