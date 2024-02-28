@@ -6,7 +6,6 @@ Api para gestionar un carrito de la compra de un e-commerce.
 
 - PHP >= 8.1
 - Composer
-- Node.js y NPM (Opcional, dependiendo de si se utilizan recursos front-end como Vue.js o React)
 - MySQL (u otro sistema de gestión de bases de datos compatible con Laravel)
 
 ## Instalación
